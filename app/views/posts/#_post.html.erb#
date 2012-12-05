@@ -1,0 +1,8 @@
+<div class="row-fluid marketing">
+  <div class="span12">
+    <h2><%= link_to post.title, post_path(post) %></h2>
+    <p class="date">Last updated <%= post.updated_at.to_date %> by <%= post.user.try(:name) %> </p>
+    <%= raw post.rendered_body %>
+  </div>
+</div>
+

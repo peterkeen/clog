@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Working Title</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le styles -->
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+
+      body p {
+        font-size: 1.35em;
+        line-height: 160%;
+      }
+
+      p.date {
+        font-size: 90%;
+      }
+
+      .footer {
+        font-size: 70%;
+      }
+    </style>
+ 
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="container-narrow">
+
+
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <% if user_signed_in? %>
+          <li><a href="/posts/new">New Post</a></li>
+          <li><a href="/recipients">Recipients</a></li>
+          <li><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
+          <% else %>
+          <li><a href="/users/sign_in">Login</a></li>
+          <% end %>
+        </ul>
+        <h3 class="muted">&nbsp;</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Working Title</h1>
+        <p class="lead">This is a brief description of the blog.</p>
+      </div>
+
+      <%= yield %>
+
+      <hr>
+
+      <div class="footer">
+        <p>&copy; Pete Keen</p>
+        <% if user_signed_in? %>
+          <%= link_to("Logout", destroy_user_session_path, :method => :delete) %>
+        <% end %>
+      </div>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

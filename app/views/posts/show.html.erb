@@ -1,0 +1,7 @@
+<%= render :partial => 'post', :locals => {:post => @post } %>
+<% if user_signed_in? %>
+  <%= link_to "Edit", edit_post_path(@post) %>
+  <% unless @post.published? %>
+    <%= link_to "Publish", publish_post_path(@post), :method => :post %>
+  <% end %>
+<% end %>
