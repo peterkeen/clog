@@ -1,4 +1,7 @@
 class RecipientsController < ApplicationController
+
+  skip_before_filter :authenticate_user!, :only => :unsubscribe
+
   # GET /recipients
   # GET /recipients.json
   def index
@@ -79,5 +82,12 @@ class RecipientsController < ApplicationController
       format.html { redirect_to recipients_url }
       format.json { head :ok }
     end
+  end
+
+  def unsubscribe
+    @recipient = Recipient.find_by_unique_id(params[:unique_id])
+    @recipient.unsubscribe!
+
+    render :unsubscribe
   end
 end

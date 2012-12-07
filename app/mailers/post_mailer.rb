@@ -3,11 +3,13 @@ class PostMailer < ActionMailer::Base
 
   def send_post(post, recipient)
     @post = post
+    @recipient = recipient
 
     mail(
       :to => recipient.email,
       :subject => post.title,
-      :from => "#{post.user.name} <#{post.user.email}>"
+      :from => "#{post.user.name} <#{post.user.email}>",
+      :reply_to => "mancer@bugsplat.info"
     )
   end
 end

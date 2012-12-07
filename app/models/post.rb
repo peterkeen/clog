@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   def publish!
     self.update_attributes(:published_at => DateTime.now)
 
-    Recipient.all.each do |recipient|
+    Recipient.where('unsubscribed_at is null').each do |recipient|
       PostMailer.send_post(self, recipient).deliver
     end
   end

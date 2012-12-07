@@ -1,6 +1,8 @@
 Clog::Application.routes.draw do
   resources :recipients
 
+  match '/unsubscribe/:unique_id' => 'recipients#unsubscribe'
+
   resources :posts do
     member do
       post :publish
