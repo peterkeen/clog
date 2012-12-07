@@ -11,8 +11,6 @@
 <% @recipients.each do |recipient| %>
   <tr>
     <td><%= recipient.email %></td>
-    <td><%= link_to 'Show', recipient %></td>
-    <td><%= link_to 'Edit', edit_recipient_path(recipient) %></td>
     <td><%= link_to 'Destroy', recipient, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>

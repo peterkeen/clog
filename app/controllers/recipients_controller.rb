@@ -5,7 +5,7 @@ class RecipientsController < ApplicationController
   # GET /recipients
   # GET /recipients.json
   def index
-    @recipients = Recipient.all
+    @recipients = Recipient.order('email')
 
     respond_to do |format|
       format.html # index.html.erb
