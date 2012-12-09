@@ -29,6 +29,8 @@ GEM
       activesupport (= 3.1.1)
     activesupport (3.1.1)
       multi_json (~> 1.0)
+    acts-as-taggable-on (2.3.3)
+      rails (~> 3.0)
     ansi (1.4.3)
     arel (2.2.3)
     bcrypt-ruby (3.0.1)
@@ -129,6 +131,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 2.3.1)
   coffee-rails (~> 3.1.1)
   devise
   girl_friday

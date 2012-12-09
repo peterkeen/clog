@@ -1,8 +1,8 @@
 <%= render :partial => 'post', :locals => {:post => @post } %>
 <% if user_signed_in? %>
-  <%= link_to "Edit", edit_post_path(@post), :class => 'btn' %>
-
+  <p><b>Tags:</b> <%= @post.tag_list || "Everyone" %></p>
   <% unless @post.published? %>
+    <%= link_to "Edit", edit_post_path(@post), :class => 'btn' %>
     <%= link_to "Send Preview", preview_post_path(@post), :method => :post, :class => 'btn' %>
     <%= link_to "Publish", publish_post_path(@post), :method => :post, :confirm => "Are you sure you want to send this?", :class => 'btn btn-danger' %>
   <% end %>

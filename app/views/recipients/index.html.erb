@@ -1,9 +1,9 @@
 <h1>Listing recipients</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Email</th>
-    <th></th>
+    <th>Tags</th>
     <th></th>
     <th></th>
   </tr>
@@ -11,6 +11,8 @@
 <% @recipients.each do |recipient| %>
   <tr>
     <td><%= recipient.email %></td>
+    <td><%= recipient.tag_list %></td>
+    <td><%= link_to 'Edit', edit_recipient_path(recipient) %></td>
     <td><%= link_to 'Destroy', recipient, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>

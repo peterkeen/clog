@@ -11,6 +11,7 @@ gem 'will_paginate'
 gem 'redcarpet'
 gem 'girl_friday'
 gem 'puma'
+gem 'acts-as-taggable-on', '~> 2.3.1'
 
 
 # Gems used only for assets and not required

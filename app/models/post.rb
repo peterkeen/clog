@@ -4,6 +4,8 @@ class Post < ActiveRecord::Base
 
   attr_accessor :preview_email
 
+  acts_as_taggable
+
   def slugify
     if self.slug.nil?
       self.slug = self.title.parameterize
@@ -21,7 +23,13 @@ class Post < ActiveRecord::Base
   def publish!
     self.update_attributes(:published_at => DateTime.now)
 
-    Recipient.where('unsubscribed_at is null').each do |recipient|
+    if self.tags.length > 0
+      @recipients = Recipient.tagged_with(self.tags, :any => true).where('unsubscribed_at is null')
+    else
+      @recipients = Recipient.where('unsubscribed_at is null')
+    end
+
+    @recipients.each do |recipient|
       POST_EMAIL_QUEUE.push(
         :post_id             => self.id,
         :recipient_email     => recipient.email,

@@ -1,5 +1,9 @@
 Clog::Application.routes.draw do
-  resources :recipients
+  resources :recipients do
+    collection do
+      get :tags
+    end
+  end
 
   match '/unsubscribe/:unique_id' => 'recipients#unsubscribe'
 

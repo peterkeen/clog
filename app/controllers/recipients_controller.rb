@@ -43,6 +43,7 @@ class RecipientsController < ApplicationController
   # POST /recipients
   # POST /recipients.json
   def create
+    params[:recipient][:tag_list] = params[:"hidden-recipient"][:tag_list]
     @recipient = Recipient.new(params[:recipient])
 
     respond_to do |format|
@@ -60,6 +61,7 @@ class RecipientsController < ApplicationController
   # PUT /recipients/1.json
   def update
     @recipient = Recipient.find(params[:id])
+    params[:recipient][:tag_list] = params[:"hidden-recipient"][:tag_list]
 
     respond_to do |format|
       if @recipient.update_attributes(params[:recipient])
@@ -89,5 +91,10 @@ class RecipientsController < ApplicationController
     @recipient.unsubscribe!
 
     render :unsubscribe
+  end
+
+  def tags
+    tags = Recipient.tag_counts
+    render :json => { :tags => tags.map { |t| {:tag => t.name } } }
   end
 end

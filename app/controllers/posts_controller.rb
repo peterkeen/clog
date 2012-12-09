@@ -47,6 +47,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    params[:post][:tag_list] = params[:"hidden-post"][:tag_list]
     @post = Post.new(params[:post])
     @post.user = current_user
 
@@ -64,6 +65,7 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.json
   def update
+    params[:post][:tag_list] = params[:"hidden-post"][:tag_list]
     @post = Post.find(params[:id])
 
     respond_to do |format|

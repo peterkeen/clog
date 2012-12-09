@@ -13,6 +13,8 @@
 
     <%= f.label :title %>
     <%= f.text_field :title, :class => 'span12' %>
+    <%= f.label :tag_list, "Send to these tags, separate with comma (empty means everyone)" %>
+    <%= f.text_field :tag_list, :class => 'tagmanager' %>
     <%= f.label :body %>
     <%= f.text_area :body, :class => 'span12' %>
     <pre><code># Biggest Header
