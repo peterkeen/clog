@@ -20,7 +20,11 @@ class Post < ActiveRecord::Base
     self.update_attributes(:published_at => DateTime.now)
 
     Recipient.where('unsubscribed_at is null').each do |recipient|
-      PostMailer.send_post(self, recipient).deliver
+      POST_EMAIL_QUEUE.push(
+        :post_id             => self.id,
+        :recipient_email     => recipient.email,
+        :recipient_unique_id => recipient.unique_id
+      )
     end
   end
 end

@@ -9,6 +9,8 @@ gem 'pg'
 gem 'devise'
 gem 'will_paginate'
 gem 'redcarpet'
+gem 'girl_friday'
+gem 'puma'
 
 
 # Gems used only for assets and not required
