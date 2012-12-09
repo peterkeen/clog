@@ -93,6 +93,17 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.publish!
 
+    flash[:notice] = "Post Published! Emails are being sent right now."
+
+    redirect_to post_path(@post)
+  end
+
+  def preview
+    @post = Post.find(params[:id])
+    @post.send_preview!(current_user.email)
+
+    flash[:notice] = "Preview sent to #{current_user.email}"
+
     redirect_to post_path(@post)
   end
 

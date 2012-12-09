@@ -6,6 +6,7 @@ Clog::Application.routes.draw do
   resources :posts do
     member do
       post :publish
+      post :preview
     end
   end
 

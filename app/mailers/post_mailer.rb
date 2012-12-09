@@ -9,9 +9,11 @@ class PostMailer < ActionMailer::Base
     @post = Post.find(post_id)
     @recipient_unique_id = recipient_unique_id
 
+    subject = args[:preview].nil? ? @post.title : "[PREVIEW] #{@post.title}"
+
     mail(
       :to => recipient_email,
-      :subject => @post.title,
+      :subject => subject,
       :from => "#{@post.user.name} <#{@post.user.email}>",
       :reply_to => "mancer@bugsplat.info"
     )

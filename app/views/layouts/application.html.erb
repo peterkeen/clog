@@ -91,6 +91,17 @@
         <p class="lead">Two nuts walk into a bar...</p>
       </div>
 
+      <% if flash[:notice] %>
+        <div class="alert alert-info">
+          <p><%= flash[:notice] %></p>
+        </div>
+      <% end %>
+      <% if flash[:error] %>
+        <div class="alert alert-danger">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %> 
+
       <%= yield %>
 
       <hr>

@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   before_save :slugify
 
+  attr_accessor :preview_email
+
   def slugify
     if self.slug.nil?
       self.slug = self.title.parameterize
@@ -27,4 +29,14 @@ class Post < ActiveRecord::Base
       )
     end
   end
+
+  def send_preview!(email)
+    POST_EMAIL_QUEUE.push(
+      :post_id => self.id,
+      :recipient_email => email,
+      :recipient_unique_id => "preview",
+      :preview => true
+    )
+  end
+    
 end
