@@ -23,7 +23,7 @@ class PostMailer < ActionMailer::Base
     @emails = recipient_emails
 
     mail(
-      :to => 'mancer2@bugsplat.info',
+      :to => 'mancer@bugsplat.info',
       :subject => "Successfully sent '#{subject}'",
     )
   end
