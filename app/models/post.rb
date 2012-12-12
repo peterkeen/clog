@@ -23,13 +23,12 @@ class Post < ActiveRecord::Base
   def publish!
     self.update_attributes(:published_at => DateTime.now)
 
-    recipients.each do |recipient|
-      POST_EMAIL_QUEUE.push(
-        :post_id             => self.id,
-        :recipient_email     => recipient.email,
-        :recipient_unique_id => recipient.unique_id
-      )
-    end
+    recipient_ids = recipients.map { |r| r.id }
+
+    POST_EMAIL_QUEUE.push(
+      :post_id => self.id,
+      :recipients => recipient_ids
+    )
   end
 
   def recipients
@@ -41,10 +40,11 @@ class Post < ActiveRecord::Base
   end
 
   def send_preview!(email)
+    recipient_ids = Recipient.tagged_with('test').map { |r| r.id }
+
     POST_EMAIL_QUEUE.push(
       :post_id => self.id,
-      :recipient_email => email,
-      :recipient_unique_id => "preview",
+      :recipients => recipient_ids,
       :preview => true
     )
   end

@@ -1,0 +1,6 @@
+<p>Sent to these recipients:</p>
+<ul>
+  <% @emails.sort.each do |e| %>
+    <li><%= e %></li>
+  <% end %>
+</ul>
